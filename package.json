@@ -13,7 +13,11 @@
     "enrich": "tsx supabase/seed/src/main.ts",
     "fetch:og": "tsx supabase/seed/fetch-og-data.ts",
     "format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
-    "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache"
+    "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache",
+    "pipeline:enrich": "tsx scripts/pipeline/03_enrich_claude.ts",
+    "pipeline:import": "tsx scripts/pipeline/04_import_supabase.ts",
+    "pipeline:import:dry": "tsx scripts/pipeline/04_import_supabase.ts --dry-run",
+    "test:lead-flow": "tsx scripts/test-lead-flow.ts"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^0.0.18",

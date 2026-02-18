@@ -26,6 +26,7 @@ export interface DirectoryConfig {
   leadValueCents: number; // what you charge per lead
   heroEmoji: string;
   vendorCTA: string;
+  fromEmail: string; // Resend from address for this directory
 }
 
 export const DIRECTORY_CONFIGS: Record<DirectoryNiche, DirectoryConfig> = {
@@ -47,6 +48,7 @@ export const DIRECTORY_CONFIGS: Record<DirectoryNiche, DirectoryConfig> = {
     leadValueCents: 2500, // $25/lead
     heroEmoji: '🚽',
     vendorCTA: 'Are You a Washington Porta-Potty Vendor?',
+    fromEmail: 'leads@wa-portapotty.com',
   },
   senior_living: {
     niche: 'senior_living',
@@ -64,6 +66,7 @@ export const DIRECTORY_CONFIGS: Record<DirectoryNiche, DirectoryConfig> = {
     leadValueCents: 8500, // $85/lead — high ticket
     heroEmoji: '🏥',
     vendorCTA: 'Are You a Senior Living Community?',
+    fromEmail: 'leads@wa-seniorliving.com',
   },
   ada_bathroom: {
     niche: 'ada_bathroom',
@@ -81,6 +84,7 @@ export const DIRECTORY_CONFIGS: Record<DirectoryNiche, DirectoryConfig> = {
     leadValueCents: 3500, // $35/lead
     heroEmoji: '♿',
     vendorCTA: 'Are You an ADA Bathroom Provider?',
+    fromEmail: 'leads@wa-adabathrooms.com',
   },
   water_quality: {
     niche: 'water_quality',
@@ -98,6 +102,7 @@ export const DIRECTORY_CONFIGS: Record<DirectoryNiche, DirectoryConfig> = {
     leadValueCents: 1500, // $15/lead
     heroEmoji: '💧',
     vendorCTA: 'Are You a Water Testing Service?',
+    fromEmail: 'leads@wa-waterquality.com',
   },
   event_rentals: {
     niche: 'event_rentals',
@@ -115,6 +120,7 @@ export const DIRECTORY_CONFIGS: Record<DirectoryNiche, DirectoryConfig> = {
     leadValueCents: 3000, // $30/lead
     heroEmoji: '🎉',
     vendorCTA: 'Are You an Event Rental Company?',
+    fromEmail: 'leads@wa-eventrentals.com',
   },
 };
 
