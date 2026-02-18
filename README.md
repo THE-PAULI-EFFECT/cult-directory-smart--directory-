@@ -1,7 +1,142 @@
 <div align="center" id="top">
-  <h1>Cult Directory Template</h1>
-  <p>A full stack nextjs + shadcn + supabase template</p>
+  <h1>🚽 NW Directory Empire</h1>
+  <p><strong>Washington State Multi-Directory Lead Generation Platform</strong></p>
+  <p>Built on Cult Directory Template — Customized for porta-potty, senior living, ADA bathrooms & more</p>
 </div>
+
+---
+
+## 🎯 What This Is
+
+**The NW Directory Empire** is a complete lead generation system for Washington State service directories. It's a fork of the excellent [nolly-studio/cult-directory-template](https://github.com/nolly-studio/cult-directory-template) customized for:
+
+- **wa-portapotty.com** — Porta-potty & luxury restroom trailer rentals (Phase 1 — BUILDING NOW)
+- **wa-seniorliving.com** — Senior living & dementia care communities (Phase 2)
+- **wa-adabathrooms.com** — ADA accessible bathroom contractors (Phase 3)
+- **wa-waterquality.com** — Water testing & filtration services (Phase 4)
+- **wa-eventrentals.com** — Event rental equipment marketplace (Phase 5)
+
+**Business Model:** One Supabase backend powers all directories. Each gets its own Next.js frontend. Vendors pay $15–150 per qualified lead. Featured listings cost $79–299/month.
+
+---
+
+## 📊 Phase 1 Status: Infrastructure Complete ✅
+
+| Component | Status | Details |
+|-----------|--------|---------|
+| Multi-tenant config | ✅ | `lib/directory-config.ts` — 5 niches pre-configured |
+| Lead capture form | ✅ | Reusable component, Supabase integration |
+| Database schema | ✅ | `supabase/migrations/20250218_core_schema.sql` — 6 tables, RLS policies |
+| Edge Functions | ✅ | `notify-vendor` — sends vendor emails via Resend |
+| Analytics | ✅ | Event tracking (GA + internal Supabase) |
+| SEO sitemap | ✅ | Auto-generates for all city/listing pages |
+| API endpoints | ✅ | `/api/track`, `/api/notify-vendor` |
+
+**Next Priority:** City & listing page generators for programmatic SEO
+
+---
+
+## 🚀 Quick Start (5 Minutes)
+
+```bash
+# 1. Clone & install
+git clone https://github.com/YOUR_ORG/nw-portapotty-directory
+cd nw-portapotty-directory
+pnpm install
+
+# 2. Setup .env.local
+cp .env.local.example .env.local
+# Fill in: SUPABASE_URL, SUPABASE_KEY, RESEND_API_KEY, etc.
+
+# 3. Run migrations
+supabase link
+supabase db push
+
+# 4. Deploy Edge Function
+supabase functions deploy notify-vendor
+
+# 5. Start dev server
+pnpm run dev
+```
+
+**Full setup guide:** [NW_DIRECTORY_SETUP.md](./NW_DIRECTORY_SETUP.md)
+
+**Deployment checklist:** [DEPLOY_CHECKLIST.md](./DEPLOY_CHECKLIST.md)
+
+---
+
+## 🏗️ Architecture
+
+```
+┌─────────────────────────────┐
+│   Supabase (Single)         │
+│ - listings, leads, vendors  │
+│ - RLS policies by niche     │
+│ - Edge Functions            │
+└──────────────┬──────────────┘
+               │
+   ┌───────────┼───────────┬───────────┬───────────┐
+   ▼           ▼           ▼           ▼           ▼
+wa-porta   wa-senior  wa-ada       wa-water   wa-events
+potty.com  living.com bathrooms.com quality.com rentals.com
+(Next.js)  (Next.js)   (Next.js)    (Next.js)   (Next.js)
+```
+
+**Each frontend:**
+- Same codebase, different `NEXT_PUBLIC_NICHE` env var
+- Auto-fetches data for their niche from shared Supabase
+- Independent Vercel deployment & custom domain
+- Shared UI components (shadcn + Tailwind)
+
+---
+
+## 💰 Revenue Model
+
+| Event | Revenue |
+|-------|---------|
+| Lead captured & routed to vendor | $25–150 |
+| Featured listing (monthly) | $79–299 |
+| Video ad (one-time) | $299 |
+| UGC social content (monthly) | $149+ |
+
+**Example:** 10 featured listings × $79/month = $790 MRR baseline. Add 20 leads/day × $30 = $18K/month at scale.
+
+---
+
+## 📁 Project Structure
+
+```
+.
+├── app/
+│   ├── page.tsx              # Homepage (to be implemented Phase 2)
+│   ├── [city]/
+│   │   ├── page.tsx          # City landing pages (to be implemented Phase 2)
+│   │   └── [slug]/
+│   │       └── page.tsx      # Individual listing pages (Phase 2)
+│   ├── api/
+│   │   ├── track/            # Analytics endpoint
+│   │   └── notify-vendor/    # Vendor notification wrapper
+│   └── sitemap.ts            # Dynamic sitemap for SEO
+├── components/
+│   └── LeadCaptureForm.tsx    # Reusable lead form (COMPLETE)
+├── lib/
+│   ├── directory-config.ts    # Multi-tenant config
+│   ├── analytics.ts           # Event tracking
+│   └── supabase/
+│       ├── client.ts          # Browser client
+│       └── server.ts          # Server client
+├── supabase/
+│   ├── functions/
+│   │   └── notify-vendor/     # Edge Function for emails
+│   └── migrations/
+│       └── 20250218_core_schema.sql
+├── NW_DIRECTORY_SETUP.md      # Complete setup guide
+└── DEPLOY_CHECKLIST.md        # 7-part deployment checklist
+```
+
+---
+
+
 
 <br/>
 
