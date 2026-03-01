@@ -27,6 +27,10 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env
+.env.local
+nw-empire/.env
+nw-empire/**/.env
 
 # vercel
 .vercel
